@@ -36,20 +36,23 @@ class _ProductsViewState extends State<ProductsView> {
                 child: Text('All Products' , style: TextStyle(fontSize: screenWidth(10)),),
               ),
 
-              TextFormField(
-                keyboardType: TextInputType.text,
-                controller: searchController,
-                onChanged: (value) => controller.filterProduct(value),
-                decoration: InputDecoration(
-                  hintText: 'search...',
-                  prefixIcon: Icon(Icons.search),
-                  contentPadding: EdgeInsets.symmetric(vertical: screenWidth(30)),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50),
-                    borderSide: BorderSide(color: Colors.black)
-                  )
-                ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: screenWidth(50)),
+                child: TextFormField(
+                  keyboardType: TextInputType.text,
+                  controller: searchController,
+                  onChanged: (value) => controller.filterProduct(value),
+                  decoration: InputDecoration(
+                    hintText: 'search...',
+                    prefixIcon: Icon(Icons.search),
+                    contentPadding: EdgeInsets.symmetric(vertical: screenWidth(30)),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(50),
+                      borderSide: BorderSide(color: Colors.black)
+                    )
+                  ),
 
+                ),
               ),
 
               Obx((){

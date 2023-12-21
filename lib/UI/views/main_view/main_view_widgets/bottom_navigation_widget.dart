@@ -47,7 +47,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
         ),
 
         PositionedDirectional(
-          bottom: size.width * 0.05,
+          bottom: size.width * 0.035,
           start: size.width * 0.05,
           end: size.width * 0.05,
           child: Padding(
@@ -94,8 +94,8 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
                         top: 0,
                         right: 0,
                         child: Container(
-                          width: screenWidth(20),
-                          height: screenWidth(20),
+                          width: screenWidth(25),
+                          height: screenWidth(25),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               color: cartService.cartCount == 0 ?
@@ -138,7 +138,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
         children: [
           SvgPicture.asset(
             "images/$imageName.svg",
-            width: size.width * 0.045,
+            width: isSelected ? size.width * 0.05 :  size.width * 0.045,
             color:
             isSelected ? Color.fromRGBO(69, 95, 185, 1) : Colors.black,
           ),

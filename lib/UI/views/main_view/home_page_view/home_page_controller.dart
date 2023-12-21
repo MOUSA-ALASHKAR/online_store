@@ -20,6 +20,11 @@ class HomePageController extends BaseController {
   RxList<ProductsModel> womenList = <ProductsModel>[].obs;
   RxList<String> items = <String>[].obs;
 
+  RxList<ProductsModel> categoryList = <ProductsModel>[].obs;
+
+  List<String> type = ["All", "electronics", "jewelery" , "men" , "woman"];
+  RxList<bool> selected = [false, true, false, false, false].obs;
+
 
   RxInt selectedIndex = 0.obs;
 
@@ -43,6 +48,21 @@ class HomePageController extends BaseController {
     getMen();
     getWomen();
     super.onInit();
+  }
+
+  void changeCategory({required String category}) {
+    categoryList.clear();
+
+    getCategory(cateegory: category);
+  }
+
+  void getCategory({required String cateegory}) {
+    if (cateegory == "electronics") {getElectronics();}
+    else if (cateegory == "jewelery") {getJewelery();}
+    else if (cateegory == "men") {getMen();}
+    else if (cateegory == "woman") {getWomen();}
+    else
+      getAllProducts();
   }
 
   void getAllProducts() {

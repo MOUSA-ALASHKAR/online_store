@@ -1,10 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:online_store/UI/shared/custom_widgets/button_widget.dart';
 import 'package:online_store/UI/shared/utils.dart';
 import 'package:online_store/UI/views/main_view/cart_view/cart_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:online_store/UI/views/main_view/main_view.dart';
+import 'package:online_store/core/services/cart_service.dart';
 
 class CartView extends StatefulWidget {
   CartView({Key? key}) : super(key: key);
@@ -22,12 +25,32 @@ class _CartViewState extends State<CartView> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: Center(
+              child: Text('Cart' , style: TextStyle(color: Colors.black , fontWeight: FontWeight.bold , fontSize: screenWidth(16)),)),
           backgroundColor: Colors.white,
-          title: Text('Cart' , style: TextStyle(color: Colors.black , fontWeight: FontWeight.bold , fontSize: screenWidth(15)),),
           elevation: 0,
         ),
         body: Obx(() {
-          return SingleChildScrollView(
+          return CartService().getCartCount() == 0 ?
+          Container(
+            child: Column(
+              children: [
+                Center(child: Lottie.asset('images/cart.json')),
+                SizedBox(height: screenWidth(30),),
+                Text('The is Empty' , style: TextStyle(fontSize: screenWidth(18)),),
+                SizedBox(height: screenWidth(30),),
+                InkWell(
+                    onTap: (){
+                      Get.offAll(MainView());
+                    },
+                    child: Text(
+                      'Click here to go shopping' ,
+                      style: TextStyle(fontSize: screenWidth(25),fontWeight: FontWeight.bold),)
+                ),
+              ],
+            ),
+          ) :
+          SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
